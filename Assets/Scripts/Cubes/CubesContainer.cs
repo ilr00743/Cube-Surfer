@@ -29,6 +29,9 @@ public class CubesContainer : MonoBehaviour
     public void Remove(Cube cube)
     {
         cube.transform.SetParent(null);
+        float offsetZ = 0.1f; // for preventing entering into obstacle model
+        cube.transform.position = new Vector3(cube.transform.position.x, cube.transform.position.y,
+            cube.transform.position.z - offsetZ);
         _cubes.Remove(cube);
         StartCoroutine(ShiftCubesDown());
         Transformed?.Invoke();

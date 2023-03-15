@@ -18,13 +18,13 @@ public class Cube: MonoBehaviour
         _cubesContainer = FindObjectOfType<CubesContainer>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         StackCube(collision);
         UnstackCube(collision);
     }
 
-    private void StackCube(Collision collision)
+    private void StackCube(Collider collision)
     {
         if (collision.gameObject.TryGetComponent(out Cube cube))
         {
@@ -36,7 +36,7 @@ public class Cube: MonoBehaviour
         }
     }
 
-    private void UnstackCube(Collision collision)
+    private void UnstackCube(Collider collision)
     {
         if (collision.gameObject.TryGetComponent(out Obstacle obstacle) && _isStacked)
         {
