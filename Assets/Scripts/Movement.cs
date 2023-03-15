@@ -1,11 +1,49 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Transform _transform;
-    
-    private void FixedUpdate()
+    [SerializeField] private StartPanel _startPanel;
+    [SerializeField] private float _forwardSpeed;
+    [SerializeField] private float _strafeSpeed;
+    private InputActions _inputActions;
+    private bool _canMove;
+
+    private void Awake()
     {
-        _transform.localPosition += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized * 5.0f *Time.deltaTime;
+        _inputActions = new InputActions();
+    }
+
+    private void OnEnable()
+    {
+        _inputActions.Gameplay.Enable();
+        _startPanel.Tapped += () => _canMove = true;
+    }
+    
+    private void OnDisable()
+    {
+        _inputActions.Gameplay.Disable();
+    }
+    
+    private void Update()
+    {
+        if(_canMove == false) return;
+        
+        var inputVector = _inputActions.Gameplay.Move.ReadValue<Vector2>();
+        Move(inputVector);
+    }
+
+    private void Move(Vector3 direction)
+    {
+        transform.Translate(Vector3.forward * (_forwardSpeed * Time.deltaTime));
+    
+        var positionX = direction.x * _strafeSpeed;
+        var newPosition = transform.position;
+        
+        newPosition.x += positionX* Time.deltaTime;
+        newPosition.x = Mathf.Clamp(newPosition.x, -2,2);
+        transform.position = newPosition;
     }
 }
