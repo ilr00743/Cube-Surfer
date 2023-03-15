@@ -42,7 +42,7 @@ public class Movement : MonoBehaviour
         var positionX = direction.x * _strafeSpeed;
         var newPosition = transform.position;
         
-        newPosition.x += positionX* Time.deltaTime;
+        newPosition.x += positionX * Time.deltaTime;
         newPosition.x = Mathf.Clamp(newPosition.x, -2,2);
         transform.position = newPosition;
     }
