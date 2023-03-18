@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _forwardSpeed;
     [SerializeField] private float _strafeSpeed;
     private InputActions _inputActions;
-    private bool _canMove;
+    public bool CanMove { get; set; }
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private void OnEnable()
     {
         _inputActions.Gameplay.Enable();
-        _startPanel.Tapped += () => _canMove = true;
+        _startPanel.Tapped += () => CanMove = true;
     }
     
     private void OnDisable()
@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
     
     private void Update()
     {
-        if(_canMove == false) return;
+        if(CanMove == false) return;
         
         var inputVector = _inputActions.Gameplay.Move.ReadValue<Vector2>();
         Move(inputVector);

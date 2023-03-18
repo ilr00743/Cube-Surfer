@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -18,6 +19,11 @@ public class Cube: MonoBehaviour
         _cubesContainer = FindObjectOfType<CubesContainer>();
     }
 
+    public void SetParent(Transform parent)
+    {
+        transform.parent = parent;
+    }
+    
     private void OnTriggerEnter(Collider collision)
     {
         StackCube(collision);

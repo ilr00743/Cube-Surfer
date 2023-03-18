@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FPSUnlocker : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         Application.targetFrameRate = 120;
     }

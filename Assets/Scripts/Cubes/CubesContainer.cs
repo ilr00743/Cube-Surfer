@@ -9,6 +9,7 @@ public class CubesContainer : MonoBehaviour
 {
     [SerializeField] private List<Cube> _cubes = new();
     [SerializeField] private Transform _parent;
+    public int CubesAmount => _cubes.Count;
     public event Action Transformed;
     
     public void Add(Cube cube)
@@ -21,15 +22,15 @@ public class CubesContainer : MonoBehaviour
 
     private void PlacingNewCube(Cube cube)
     {
-        cube.transform.SetParent(_parent);
+        cube.SetParent(_parent);
         var position = GetLastCubePosition();
         cube.transform.localPosition = position + Vector3.down;
     }
 
     public void Remove(Cube cube)
     {
-        cube.transform.SetParent(null);
-        float offsetZ = 0.1f; // for preventing entering into obstacle model
+        cube.SetParent(null);
+        float offsetZ = 0.2f; // for preventing entering into obstacle model
         cube.transform.position = new Vector3(cube.transform.position.x, cube.transform.position.y,
             cube.transform.position.z - offsetZ);
         _cubes.Remove(cube);
