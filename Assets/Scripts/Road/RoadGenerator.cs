@@ -1,30 +1,32 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoadGenerator : MonoBehaviour
+namespace Road
 {
-    [SerializeField] private GameObject[] _chunks;
-    [SerializeField] private GameObject _finish;
-    [SerializeField] private int _chunksAmount;
-
-    private void Start()
+    public class RoadGenerator : MonoBehaviour
     {
-        Generate();
-    }
+        [SerializeField] private GameObject[] _chunks;
+        [SerializeField] private GameObject _finish;
+        [SerializeField] private int _chunksAmount;
 
-    private void Generate()
-    {
-        var position = new Vector3(0, 0, 0);
-        var offsetZ = 30;
-        
-        for (int i = 0; i < _chunksAmount; i++)
+        private void Start()
         {
-            var chunk = Instantiate(_chunks[Random.Range(0, _chunks.Length)]);
-            chunk.transform.position = position;
-            position.z += offsetZ;
+            Generate();
         }
 
-        Instantiate(_finish, position, Quaternion.identity);
+        private void Generate()
+        {
+            var position = new Vector3(0, 0, 0);
+            var offsetZ = 30;
+        
+            for (int i = 0; i < _chunksAmount; i++)
+            {
+                var chunk = Instantiate(_chunks[Random.Range(0, _chunks.Length)]);
+                chunk.transform.position = position;
+                position.z += offsetZ;
+            }
+
+            Instantiate(_finish, position, Quaternion.identity);
+        }
     }
 }

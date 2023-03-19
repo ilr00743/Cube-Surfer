@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+namespace Road
 {
+    public class Ground : MonoBehaviour
+    {
+    }
 }

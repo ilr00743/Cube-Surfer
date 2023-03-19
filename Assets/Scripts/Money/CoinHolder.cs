@@ -1,21 +1,14 @@
 using System;
+using UnityEngine;
 
 namespace Money
 {
     public class CoinHolder
     {
-        private int _balance;
+        private int _balance = PlayerPrefs.GetInt("Money");
         public event Action BalanceChanged;
-        private static CoinHolder _instance;
-        public static CoinHolder Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new CoinHolder();
-                return _instance;
-            }
-        }
+        private static readonly CoinHolder _instance = new CoinHolder();
+        public static CoinHolder Instance => _instance;
 
         private CoinHolder(){}
         
@@ -28,11 +21,12 @@ namespace Money
 
             _balance += value;
             BalanceChanged?.Invoke();
+            SaveBalance();
         }
 
-        public void SaveBalance()
+        private void SaveBalance()
         {
-            throw new NotImplementedException();
+            PlayerPrefs.SetInt("Money", _balance);
         }
 
         public int GetBalance()

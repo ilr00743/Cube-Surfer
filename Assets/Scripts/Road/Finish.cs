@@ -1,13 +1,24 @@
+using Cubes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Finish : MonoBehaviour
+namespace Road
 {
-    private void OnTriggerEnter(Collider other)
+    public class Finish : MonoBehaviour
     {
-        if (other.TryGetComponent(out Cube cube))
+        private void OnTriggerEnter(Collider other)
         {
-            cube.GetComponentInParent<Movement>().CanMove = false;
-            Debug.Log(cube.GetComponentInParent<CubesContainer>().CubesAmount);
+            if (other.TryGetComponent(out Cube cube))
+            {
+                cube.GetComponentInParent<Movement>().CanMove = false;
+                Debug.Log(cube.GetComponentInParent<CubesContainer>().CubesAmount + " cubes left");
+                Invoke(nameof(RestartLevel), 2f);
+            }
+        }
+
+        private void RestartLevel()
+        {
+            SceneManager.LoadSceneAsync("LoadScene");
         }
     }
 }

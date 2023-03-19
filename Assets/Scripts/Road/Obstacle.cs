@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+namespace Road
 {
+    public class Obstacle : MonoBehaviour
+    {
+    }
 }

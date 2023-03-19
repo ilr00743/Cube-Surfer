@@ -1,13 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelLoader : MonoBehaviour
+namespace UI
 {
-    private void Start()
+    public class LevelLoader : MonoBehaviour
     {
-        SceneManager.LoadSceneAsync("Level");
+        private void Start()
+        {
+            SceneManager.LoadSceneAsync("Level");
+        }
     }
 }
