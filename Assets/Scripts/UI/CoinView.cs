@@ -1,4 +1,3 @@
-using System;
 using Money;
 using TMPro;
 using UnityEngine;
@@ -8,7 +7,6 @@ namespace UI
     public class CoinView : MonoBehaviour
     {
         [SerializeField] private TMP_Text _collectedCoinsValue;
-
         private void Start()
         {
             _collectedCoinsValue.text = "Coins: " + CoinHolder.Instance.GetBalance();

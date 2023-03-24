@@ -8,21 +8,22 @@ namespace Cubes
     {
         [SerializeField] private CubeColor _cubeColor;
         [SerializeField] private bool _isStacked;
-        private MeshRenderer _renderer;
         private CubesContainer _cubesContainer;
         private CoinCollector _coinCollector;
+        private MeshRenderer _renderer;
         public Color Color => _renderer.material.color;
 
         private void Awake()
         {
             _renderer = GetComponent<MeshRenderer>();
             _renderer.material.color = _cubeColor.GetRandomColor();
+            _coinCollector = new CoinCollector();
             _cubesContainer = FindObjectOfType<CubesContainer>();
         }
 
         private void OnEnable()
         {
-            _coinCollector = GetComponent<CoinCollector>();
+            //_coinCollector = GetComponent<CoinCollector>();
         }
 
         public void SetParent(Transform parent)
