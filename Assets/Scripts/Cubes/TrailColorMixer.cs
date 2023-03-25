@@ -8,6 +8,7 @@ namespace Cubes
         [SerializeField] private CubesContainer _cubesContainer;
         [SerializeField] private float _changingColorDuration;
         private TrailRenderer _trail;
+        private Coroutine _colorChanging;
         private Color _startColor;
         private Color _endColor;
 
@@ -18,6 +19,7 @@ namespace Cubes
 
         private void OnEnable()
         {
+            //_colorChanging = OnChangeColorForSeconds(_changingColorDuration);
             _cubesContainer.Transformed += OnChangeColor;
         }
 
@@ -36,21 +38,21 @@ namespace Cubes
 
         private void OnChangeColor()
         {
-            StopCoroutine(nameof(OnChangeColorForSeconds));
-            StartCoroutine(OnChangeColorForSeconds(_changingColorDuration));
+            if (_colorChanging != null) StopCoroutine(_colorChanging);
+            _colorChanging = StartCoroutine(OnChangeColorForSeconds(_changingColorDuration));
         }
-    
+
         private IEnumerator OnChangeColorForSeconds(float duration)
         {
             float time = 0;
             var previousStartColor = _trail.startColor;
             var previousEndColor = _trail.endColor;
             var targetColor = _cubesContainer.GetLastCubeColor();
-        
+
             while (time < duration)
             {
-                _trail.startColor = Color.Lerp(previousStartColor, targetColor, time /duration);
-                _trail.endColor = Color.Lerp(previousEndColor, previousStartColor, time/duration);
+                _trail.startColor = Color.Lerp(previousStartColor, targetColor, time / duration);
+                _trail.endColor = Color.Lerp(previousEndColor, previousStartColor, time / duration);
                 time += Time.deltaTime;
                 yield return null;
             }
