@@ -19,7 +19,6 @@ namespace Cubes
 
         private void OnEnable()
         {
-            //_colorChanging = OnChangeColorForSeconds(_changingColorDuration);
             _cubesContainer.Transformed += OnChangeColor;
         }
 
