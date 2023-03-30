@@ -8,10 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ground
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords:
+  m_Shader: {fileID: 4800000, guid: 4609c28b77ae6c04689a8ba2b2fccba7, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _GLOSSYREFLECTIONS_OFF
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -123,11 +123,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.56368816, g: 0.7356176, b: 0.7924528, a: 1}
-    - _Color: {r: 0.98039216, g: 0.9019608, b: 0.654902, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HColor: {r: 0.6797793, g: 0.84398055, b: 0.8962264, a: 1}
+    - _HColor: {r: 0.82452834, g: 0.95613205, b: 1, a: 1}
     - _RimColor: {r: 0.7207903, g: 0.9039774, b: 0.9622642, a: 1}
-    - _SColor: {r: 0.51671416, g: 0.67579764, b: 0.7264151, a: 1}
+    - _SColor: {r: 0.4699893, g: 0.7013002, b: 0.7735849, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.5}
   m_BuildTextureStacks: []
 --- !u!114 &4173940306563919326
